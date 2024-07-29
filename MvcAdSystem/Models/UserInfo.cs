@@ -12,10 +12,10 @@ namespace MvcAdSystem.Models
         public string UserName { get; set; }
         public string EnglishUserName { get; set; }
         public string UserPhone { get; set; }
-        public UserSex userSex { get; set; }
-        public DateTime UserBirthday { get; set; }
+        public int UserSex { get; set; }
+        public DateTime? UserBirthday { get; set; }
         public string UserAddress { get; set; }
-        public DateTime UserAddDataTime { get; set; }
+        public DateTime? UserAddDataTime { get; set; }
 
         //image
         public string UserImage { get; set; }
