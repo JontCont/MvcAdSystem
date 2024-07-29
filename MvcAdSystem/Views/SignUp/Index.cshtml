@@ -3,6 +3,7 @@
 
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Login/_Layout.cshtml";
 }
 
 @using (Html.BeginForm("Register", "SignUp", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
