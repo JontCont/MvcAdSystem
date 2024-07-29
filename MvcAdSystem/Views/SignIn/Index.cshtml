@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Login/_Layout.cshtml";
+}
+
+
+<div class="text-center">
+    <h1 class="h4 text-light-900 mb-2">Welcome</h1>
+    <h6 class="h6 text-light-900  ">Warehouse Management System</h6>
+</div>
+<form asp-action="UserAuthent" method="post">
+    <div class="form-group">
+        <input type="text" asp-for="User" class="form-control form-control-user input-radius" id="exampleInputEmail" aria-describedby="emailHelp"
+               placeholder="輸入使用者帳號....">
+    </div>
+    <div class="form-group">
+        <input type="hidden" asp-for="Password" id="Password">
+        <input type="password" id="user_pass" class="form-control form-control-user input-radius" placeholder="輸入密碼...">
+    </div>
+    <div class="form-group">
+        <div class="custom-control custom-checkbox small">
+            <input type="checkbox" class="custom-control-input" id="customCheck">
+            <label class="custom-control-label" for="customCheck">記住我</label>
+        </div>
+    </div>
+    <p class="erro-info" style="color:red;">@ViewBag.message</p>
+    <button type="submit" class="btn btn-primary btn-user btn-block">登入</button>
+</form>
+
+<script>
+    $('form').submit(() => {
+        let val = $('#user_pass').val();
+        $('#Password').val(sha256(val));
+    })
+</script>
