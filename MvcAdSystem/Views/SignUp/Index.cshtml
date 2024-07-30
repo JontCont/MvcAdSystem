@@ -5,43 +5,45 @@
     ViewBag.Title = "Index";
 }
 
+<h2>註冊</h2>
 @using (Html.BeginForm("Register", "SignUp", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
     <div class="form-group">
         @Html.LabelFor(m => m.UserEmail, new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.TextBoxFor(m => m.UserEmail, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.UserEmail)
+            @Html.ValidationMessageFor(m => m.UserEmail, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.UserName, new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.UserName)
+            @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.UserPhone, new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.UserPhone, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.UserPhone)
+            @Html.TextBoxFor(m => m.UserPhone, new { @class = "form-control", @type = "nubmer" })
+            @Html.ValidationMessageFor(m => m.UserPhone, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Password, new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Password, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.Password)
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.ConfirmPassword, new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.ConfirmPassword)
+            @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="form-group">

@@ -1,7 +1,12 @@
-﻿<!DOCTYPE html>
+﻿@{
+    bool isSignIn = User.Identity.IsAuthenticated;
+
+}
+
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - 我的 ASP.NET 應用程式</title>
@@ -21,8 +26,18 @@
                     <li>@Html.ActionLink("首頁", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("關於", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("連絡人", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("登入", "Index", "SignIn", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("註冊", "Index", "SignUp", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("個人設定", "Index", "Users", new { area = "" }, new { @class = "nav-link" })</li>
+                    @{
+                        if (isSignIn)
+                        {
+                            <li>@Html.ActionLink("登出", "Index", "SignOut", new { area = "" }, new { @class = "nav-link" })</li>
+                        }
+                        else
+                        {
+                            <li>@Html.ActionLink("登入", "Index", "SignIn", new { area = "" }, new { @class = "nav-link" })</li>
+                            <li>@Html.ActionLink("註冊", "Index", "SignUp", new { area = "" }, new { @class = "nav-link" })</li>
+                        }
+                    }
                 </ul>
             </div>
         </div>

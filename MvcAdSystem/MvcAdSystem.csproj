@@ -120,6 +120,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SignOutController.cs" />
     <Compile Include="Controllers\SignUpController.cs" />
     <Compile Include="Controllers\SignInController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
@@ -218,7 +219,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Shared\Login\_Layout.cshtml" />
     <Content Include="Views\SignIn\Index.cshtml" />
     <Content Include="Views\SignUp\Index.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />

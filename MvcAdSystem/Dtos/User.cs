@@ -18,7 +18,7 @@ namespace MvcAdSystem.Dtos
         public string Password { get; set; }
         public string UserName { get; set; }
         public string EnglishName { get; set; }
-        public byte[] Phone { get; set; }
+        public string Phone { get; set; }
         public int Sex { get; set; }
         public Nullable<System.DateTime> Birthday { get; set; }
         public string Address { get; set; }
