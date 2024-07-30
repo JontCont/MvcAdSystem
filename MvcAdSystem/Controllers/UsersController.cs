@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Principal;
 using System.Web;
@@ -13,6 +14,12 @@ namespace MvcAdSystem.Controllers
 {
     public class UsersController : Controller
     {
+
+        ~UsersController()
+        {
+            Dispose();
+        }
+
         // GET: Users
         public ActionResult Index()
         {
@@ -54,21 +61,63 @@ namespace MvcAdSystem.Controllers
 
         // POST: Users/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(UserInfo model, HttpPostedFileBase file)
         {
+            var context = new AdSystemEntities();
             try
             {
                 // TODO: Add update logic here
-                //var context = new AdSystemEntities();
-                //context.SaveChanges();
-                //context.Dispose();
+                var users = context.Users.Find(model.UserEmail);
+                if (users == null)
+                {
+                    ModelState.AddModelError("", "尚未登入帳號");
+                    context.Dispose();
+                    return View("Index", model);
+                }
+                else
+                {
+                    users.UserName = model.UserName;
+                    users.EnglishName = model.EnglishUserName;
+                    users.Phone = model.UserPhone;
+                    users.Sex = model.UserSex;
+                    users.Address = model.UserAddress;
+                    users.Birthday = model.UserBirthday;
+                    users.UserImage = GetImageData(file) ?? model.UserImage;
+                    context.SaveChanges();
+                    context.Dispose();
+                }
                 return RedirectToAction("Index");
             }
             catch
             {
+                context.Dispose();
                 return View();
             }
         }
 
+        public ActionResult GetImage(string email)
+        {
+            var context = new AdSystemEntities();
+
+            var user = context.Users.Find(email);
+            if (user != null)
+            {
+                return File(user.UserImage, "image/jpeg");
+            }
+            return HttpNotFound();
+        }
+
+        private byte[] GetImageData(HttpPostedFileBase file)
+        {
+            byte[] bytes = null;
+            if (file != null && file.ContentLength > 0)
+            {
+                using (var reader = new BinaryReader(file.InputStream))
+                {
+                    bytes = reader.ReadBytes(file.ContentLength);
+                }
+            }
+            return bytes;
+        }
     }
 }

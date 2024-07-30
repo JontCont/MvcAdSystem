@@ -32,6 +32,6 @@ namespace MvcAdSystem.Models
 
         //image
         [Display(Name ="大頭貼")]
-        public string UserImage { get; set; }
+        public byte[] UserImage { get; set; }
     }
 }

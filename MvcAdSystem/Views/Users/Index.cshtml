@@ -13,7 +13,7 @@
 
 <h2>個人資訊</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "Users", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
@@ -22,7 +22,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.UserEmail, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DisplayTextFor(model => model.UserEmail)
+                @Html.EditorFor(model => model.UserEmail, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = true } })
                 @Html.ValidationMessageFor(model => model.UserEmail, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -69,6 +69,18 @@
                 @Html.ValidationMessageFor(model => model.UserAddress, "", new { @class = "text-danger" })
             </div>
         </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserImage, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="file" id="file" class="form-control" accept="jpg" />
+                @Html.ValidationMessageFor(model => model.UserImage, "", new { @class = "text-danger" })
+            </div>
+
+            <div>
+                <img src="@Url.Action("GetImage", "Users", new { email = Model.UserEmail })" style="width: 100px; height: auto;" />
+            </div>
+        </div>
         <div class="form-group">
             @Html.LabelFor(model => model.UserAddDataTime, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -79,7 +91,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-info" />
+                <input type="submit" value="存檔" class="btn btn-info" />
             </div>
         </div>
     </div>
