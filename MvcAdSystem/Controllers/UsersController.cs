@@ -100,7 +100,7 @@ namespace MvcAdSystem.Controllers
             var context = new AdSystemEntities();
 
             var user = context.Users.Find(email);
-            if (user != null)
+            if (user != null && user.UserImage != null)
             {
                 return File(user.UserImage, "image/jpeg");
             }
